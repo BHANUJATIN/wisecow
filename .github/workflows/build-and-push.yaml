@@ -18,10 +18,13 @@ jobs:
         uses: aws-actions/amazon-ecr-login@v1
         env:
           AWS_REGION: ${{ secrets.AWS_REGION }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGISTRY_URL: ${{ secrets.AWS_REGISTRY_URL }}
         with:
-          registry: ${{ secrets.AWS_REGISTRY_URL }}
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          registry: $AWS_REGISTRY_URL
+          aws-access-key-id: $AWS_ACCESS_KEY_ID
+          aws-secret-access-key: $AWS_SECRET_ACCESS_KEY
           aws-region: $AWS_REGION # Access environment variable
 
       - name: Build Docker Image
