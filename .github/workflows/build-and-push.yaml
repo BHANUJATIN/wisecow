@@ -15,8 +15,10 @@ jobs:
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
+        env:
+          ${{ secrets.AWS_IAM_USER_ARN }}
         with:
-          role-to-assume: ${{ secrets.AWS_IAM_USER_ARN }}
+          role-to-assume: $AWS_IAM_USER_ARN
           aws-region: eu-north-1
 
       - name: Login to Amazon ECR
